@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- <include file="$(find density_calculator)/launch/sq_indoor_box_5_density_calculator.launch"/> -->
+  <!-- <include file="$(find density_calculator)/launch/sq_indoor_box_1_density_calculator.launch"/> -->
+  <!-- <include file="$(find density_calculator)/launch/sq_indoor_mini_box_4_density_calculator.launch"/> -->
+    
+    <!-- <!&#45;&#45; -->
+    <arg name="TARGET_FRAME" default="base_link"/>
+    <!-- <arg name="TARGET_FRAME" default="lidar_link"/> -->
+    <arg name="store_num" default="10"/>
+
+    <node pkg="ground_points_filter" type="ground_points_filter" name="ground_points_filter" >
+		<remap from="/velodyne_points" to="/cloud/lcl"/>
+        <!-- <param name="TARGET_FRAME" value="$(arg TARGET_FRAME)"/> -->
+        <param name="RATIO" value="0.6"/>
+        <param name="MIN_COUNT" value="20"/>
+        <!-- <param name="store_num" value="5"/> -->
+        <param name="SET_DISTANCE_THRE" value="0.1"/>
+        <!-- <param name="leaf_size" value="0.4"/> -->
+    </node>
+     
+       <!-- <node pkg="rviz" type="rviz" name="rviz51" args="-d $(find velocity_points_mover)/config/ground_points_filter.rviz"/> -->
+</launch>
